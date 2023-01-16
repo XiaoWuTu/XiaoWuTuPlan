@@ -46,7 +46,7 @@ lf = ttkbootstrap.Labelframe(text="工具栏：", width=1400, height=120)
 
 
 def append():
-    global l2, e1, l3, l4, de1, de2, e2
+    global l2, e1, l3, l4, de1, de2, e2, l5, l6
     try:
         l2.pack_forget()
         e1.pack_forget()
@@ -55,6 +55,8 @@ def append():
         de1.pack_forget()
         de2.pack_forget()
         e2.pack_forget()
+        l5.pack_forget()
+        l6.pack_forget()
     except:
         pass
     l2 = ttkbootstrap.Label(lf, text="计划添加页面", font=("楷体", 20))
@@ -65,13 +67,17 @@ def append():
     de1 = ttkbootstrap.DateEntry(lf, width=146)
     de2 = ttkbootstrap.DateEntry(lf, width=146)
     e2 = ttkbootstrap.Entry(lf, width=150)
+    l5 = ttkbootstrap.Label(lf, text="请输入计划内容：", font=("楷体", 10))
+    l6 = ttkbootstrap.Label(lf, text="请输入计划开始时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):")
     e2.insert('0', "请输入计划开始时间，格式：时：分，时分均为两位数（0补齐），冒号为英文状态。")
     l2.pack()
+    l5.pack()
     e1.pack()
     l3.pack()
     de1.pack()
     l4.pack()
     de2.pack()
+    l6.pack()
     e2.pack()
 
 
@@ -84,6 +90,8 @@ def modification():
         de1.pack_forget()
         de2.pack_forget()
         e2.pack_forget()
+        l5.pack_forget()
+        l6.pack_forget()
     except:
         pass
 
@@ -97,6 +105,8 @@ def backspace():
         de1.pack_forget()
         de2.pack_forget()
         e2.pack_forget()
+        l5.pack_forget()
+        l6.pack_forget()
     except:
         pass
 
