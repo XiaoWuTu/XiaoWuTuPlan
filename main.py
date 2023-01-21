@@ -1,5 +1,6 @@
 import pickle
 import threading
+from os import system
 
 import ttkbootstrap
 from ttkbootstrap.constants import *
@@ -76,9 +77,11 @@ def append():
     e2_content = ttkbootstrap.StringVar()
     e2 = ttkbootstrap.Entry(lf, width=300, textvariable=e2_content)
     l5 = ttkbootstrap.Label(lf, text="请输入计划内容：", font=("楷体", 10))
-    l6 = ttkbootstrap.Label(lf, text="请输入计划开始时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):", font=("楷体", 10))
+    l6 = ttkbootstrap.Label(lf, text="请输入计划开始时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):",
+                            font=("楷体", 10))
     b4 = ttkbootstrap.Button(lf, text="确认添加", command=get_append, width=300)
-    l7 = ttkbootstrap.Label(lf, text="请输入计划截止时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):", font=("楷体", 10))
+    l7 = ttkbootstrap.Label(lf, text="请输入计划截止时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):",
+                            font=("楷体", 10))
     e3_content = ttkbootstrap.StringVar()
     e3 = ttkbootstrap.Entry(lf, width=300, textvariable=e3_content)
     l2.pack()
@@ -102,7 +105,7 @@ def get_append():
     r = 0
     for _ in plans:
         r = r + 1
-    plans.append((r + 1, start_time, end_time, what))
+    plans.append([r + 1, start_time, end_time, what])
     with open("plans.pickle", "wb+") as f:
         pickle.dump(plans, f)
     z = 0
@@ -171,20 +174,26 @@ def modification():
             l12.pack()
             de3 = ttkbootstrap.DateEntry(lf, width=207)
             de3.pack()
-            l13 = ttkbootstrap.Label(lf, text="请输入修改后的计划开始时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):", font=("楷体", 10))
+            l13 = ttkbootstrap.Label(lf,
+                                     text="请输入修改后的计划开始时间(格式：时：分，时分均为两位数（0补齐），冒号为英文状态。):",
+                                     font=("楷体", 10))
             l13.pack()
             e5_content = ttkbootstrap.StringVar()
             e5 = ttkbootstrap.Entry(lf, width=300, textvariable=e5_content)
             b5 = ttkbootstrap.Button(lf, text="确定修改", command=get_modification, width=20)
             b5.pack()
+
     b4 = ttkbootstrap.Button(lf, text="确定", command=ensure, width=20)
     b4.pack(side=ttkbootstrap.LEFT)
+
 
 def get_modification():
     start_time = str(de3.entry.get()) + " " + str(e5_content.get())
     plans[cbo_get][1] = start_time
     with open("plans.pickle", "wb+") as f:
         pickle.dump(plans, f)
+    system('reboot')
+
 
 def backspace():
     cls_append()
