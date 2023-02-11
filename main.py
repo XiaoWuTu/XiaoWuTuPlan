@@ -1,4 +1,5 @@
 # Xiao Wu Tu Plan
+# Good!
 import pickle
 import threading
 from os import system
